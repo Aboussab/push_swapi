@@ -6,77 +6,124 @@
 /*   By: aboussab <aboussab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 11:43:00 by aboussab          #+#    #+#             */
-/*   Updated: 2026/01/26 15:48:21 by aboussab         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:46:10 by aboussab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**valide_arg(char *str)
+int	valide_arg(char *str)
 {
 	char	**ptr;
 	size_t		i;
 	size_t	n;
 
+	if (!str)
+		return 0;
 	i = 0;
 	n = w_count(str,' ');
 	ptr = ft_split(str,' ');
 	while (i < n)
 	{
 		if(!(ft_isdigit(ptr[i])))
-			return NULL;
+			return (free(ptr),0);
+		i++;
+	}
+	return (free(ptr),1);
+}
+
+char	**bring_arg(char *str)
+{
+	char	**ptr;
+	size_t		i;
+	size_t	n;
+
+	if (!str)
+		return NULL;
+	i = 0;
+	n = w_count(str,' ');
+	ptr = ft_split(str,' ');
+	while (i < n)
+	{
+		if(!(ft_isdigit(ptr[i])))
+			return (free(ptr),NULL);
+		i++;
+	}
+	i = 0;
+	while(i > n)
+	{
+		if(valide_arg(ptr[i]) == 0)
+			return(write(2,"ERROR",5),free(ptr),NULL);
 		i++;
 	}
 	return (ptr);
 }
-t_list	**insert_list(char **ptr)
+
+t_list	*insert_list(char *str)
 {
 	size_t	i;
 	int		nmb;
-	t_list	**head;
+	t_list	*head;
 	t_list	*new_tmp;
+	char	**ptr;
 
-	if (!ptr)
+	ptr = bring_arg(str);
+	if (!ptr || !str)
 		return NULL;
 	nmb = ft_atoi(ptr[0]);
-	new_tmp = ft_lstnew(&nmb);
-	head = &new_tmp;
+	head = ft_lstnew(nmb);
 	if (!head)
-		return (ft_lstclear(head),NULL);
+		return (free(ptr),ft_lstclear(&head),NULL);
 	i = 1;
 	while (ptr[i] != NULL)
 	{
 		nmb = ft_atoi(ptr[i]);
-		new_tmp = ft_lstnew(&nmb);
+		new_tmp = ft_lstnew(nmb);
 		if (!new_tmp)
-			return(ft_lstclear(head),NULL);
-		ft_lstadd_back(head,new_tmp);
+			return(free(ptr),ft_lstclear(&head),NULL);
+		ft_lstadd_back(&head,new_tmp);
 		i++;	
+	}
+	return (free(ptr),head);
+}
+
+
+t_list	*combnitiones(int argc,char **argv)
+{
+	t_list	*head;
+	t_list	*new_tmp;
+	int		j;
+
+	j = 1;
+	head = insert_list(argv[1]);
+	if (!head || !argv)
+		return NULL;
+	while (j < argc)
+	{
+		new_tmp = insert_list(argv[j]);
+		if (!new_tmp)
+			return(write(2,"ERROR",5),ft_lstclear(&head),NULL);
+		ft_lstadd_back(&head,new_tmp);
+		j++;
 	}
 	return (head);
 }
 
-int main()
+int main(int argc,char **argv)
 {
-	char **ptr;
-	t_list	**head;
-	t_list	*pointer;
-	int	*number;
+	t_list *head1;
+	t_list *head;
 	int	i = 0;
-	char *str = "15 12 48 215 25 ";
-
-	ptr = valide_arg(str);
-	head = insert_list(ptr);
-	while (i < 5)
+	
+	head = combnitiones(argc,argv);
+	head1 = head;
+	while (head != NULL)
 	{
-		printf("%d\n",ft_atoi(ptr[i]));
+		printf("node %d :  %d\n",i,head1 -> nmb);
+		head1 = head1 -> next;
 		i++;
 	}
-	i = 0;
-	while (i < 5)
-	{
-		i++;
-	}
+	ft_lstclear(&head);
 	return (0);
 	
 }
