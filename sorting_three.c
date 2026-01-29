@@ -6,7 +6,7 @@
 /*   By: aboussab <aboussab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 15:40:53 by aboussab          #+#    #+#             */
-/*   Updated: 2026/01/29 18:06:00 by aboussab         ###   ########.fr       */
+/*   Updated: 2026/01/29 21:41:05 by aboussab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,25 @@ void sorting_three(t_list *head)
 
 	max = head -> nmb;
 	node  = head ->next;
-	if ((max > (head -> nmb)) && (max > (head -> next -> nmb)))
+	if ((max > (node -> nmb)) && (max > (node -> next -> nmb)))
 	{
 		if ((node -> nmb) >  (node -> next -> nmb))
-			write(2,"sa",2);
-		write(2,"rra",3);
+			write(2,"sa\n",3);
+		write(2,"rra\n",4);
 		return ;
 	}
 	max = node -> nmb;
-	if ((max < (head -> nmb)) && (max > (node -> next -> nmb)))
+	if ((max > (head -> nmb)) && (max > (node -> next -> nmb)))
 	{
 		if ((node -> next -> nmb) > (head -> nmb))
-			write(2,"sa",2);
-		write(2,"rra",3);
+			write(2,"sa\n",3);
+		write(2,"rra\n",4);
 		return ;
 	}
 	max = node -> next -> nmb;
 	if ((max < (head -> nmb)) && (max > (node -> nmb)))
 	{
 		if ((head -> nmb) >  (node -> nmb))
-			write(2,"sa",2);
+			write(2,"sa\n",3);
 	}
 }

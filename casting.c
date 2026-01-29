@@ -6,7 +6,7 @@
 /*   By: aboussab <aboussab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 11:43:00 by aboussab          #+#    #+#             */
-/*   Updated: 2026/01/29 19:41:52 by aboussab         ###   ########.fr       */
+/*   Updated: 2026/01/29 21:31:33 by aboussab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**bring_arg(char *str)
 		i++;
 	}
 	i = 0;
-	while(i > n)
+	while(i < n)
 	{
 		if(valide_arg(ptr[i]) == 0)
 			return(write(2,"ERROR",5),free(ptr),NULL);
@@ -68,7 +68,7 @@ t_list	*insert_list(char *str)
 	char	**ptr;
 
 	ptr = bring_arg(str);
-	if (!ptr && !str)
+	if (!ptr || !str)
 		return NULL;
 	nmb = ft_atoi(ptr[0]);
 	head = ft_lstnew(nmb);
@@ -94,10 +94,10 @@ t_list	*combnitiones(int argc,char **argv)
 	t_list	*new_tmp;
 	int		j;
 
-	j = 1;
+	j = 2;
 	head = insert_list(argv[1]);
 	if (!head || !argv)
-		return NULL;
+		return (write(2,"ERROR",5),NULL);
 	while (j < argc)
 	{
 		new_tmp = insert_list(argv[j]);
@@ -117,16 +117,16 @@ int main(int argc,char **argv)
 	
 	head = combnitiones(argc,argv);
 	head1 = head;
-	while (head -> next != NULL)
+	
+	while (head1  != NULL)
 	{
 		printf("loool");
-		printf("node %d :  %d\n",i,head -> nmb);
-		head = head -> next;
+		printf("node %d :  %d\n",i,head1 -> nmb);
+		head1 = head1 -> next;
 		i++;
 	}
-	// printf("-------------------------\n");
-	// sorting_three(head);
-	ft_lstclear(&head);
+	printf("-------------------------\n");
+	sorting_three(head);
 	return (0);
 	
 }
