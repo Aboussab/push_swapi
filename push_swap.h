@@ -6,7 +6,7 @@
 /*   By: aboussab <aboussab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 11:43:13 by aboussab          #+#    #+#             */
-/*   Updated: 2026/01/26 11:22:29 by aboussab         ###   ########.fr       */
+/*   Updated: 2026/01/29 18:00:32 by aboussab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@
 #include <limits.h>
 #include "libft/libft.h"
 
-// typedef struct node{
-// 	int	nmb;
-// 	node *next;
-// }node;
+void sorting_three(t_list *head);
 
 
 

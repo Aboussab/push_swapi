@@ -6,7 +6,7 @@
 /*   By: aboussab <aboussab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 11:43:00 by aboussab          #+#    #+#             */
-/*   Updated: 2026/01/27 16:46:10 by aboussab         ###   ########.fr       */
+/*   Updated: 2026/01/29 18:40:34 by aboussab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ t_list	*insert_list(char *str)
 	char	**ptr;
 
 	ptr = bring_arg(str);
-	if (!ptr || !str)
-		return NULL;
+	// if (!ptr && !str)
+	// 	return NULL;
 	nmb = ft_atoi(ptr[0]);
 	head = ft_lstnew(nmb);
 	if (!head)
@@ -117,12 +117,15 @@ int main(int argc,char **argv)
 	
 	head = combnitiones(argc,argv);
 	head1 = head;
-	while (head != NULL)
+	while (head -> next != NULL)
 	{
-		printf("node %d :  %d\n",i,head1 -> nmb);
-		head1 = head1 -> next;
+		printf("loool");
+		printf("node %d :  %d\n",i,head -> nmb);
+		head = head -> next;
 		i++;
 	}
+	// printf("-------------------------\n");
+	// sorting_three(head);
 	ft_lstclear(&head);
 	return (0);
 	
