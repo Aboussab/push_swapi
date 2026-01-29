@@ -6,7 +6,7 @@
 /*   By: aboussab <aboussab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 11:43:00 by aboussab          #+#    #+#             */
-/*   Updated: 2026/01/29 18:40:34 by aboussab         ###   ########.fr       */
+/*   Updated: 2026/01/29 19:41:52 by aboussab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ t_list	*insert_list(char *str)
 	char	**ptr;
 
 	ptr = bring_arg(str);
-	// if (!ptr && !str)
-	// 	return NULL;
+	if (!ptr && !str)
+		return NULL;
 	nmb = ft_atoi(ptr[0]);
 	head = ft_lstnew(nmb);
 	if (!head)
