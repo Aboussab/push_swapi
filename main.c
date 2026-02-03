@@ -6,7 +6,7 @@
 /*   By: aboussab <aboussab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 11:43:07 by aboussab          #+#    #+#             */
-/*   Updated: 2026/02/02 16:27:23 by aboussab         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:24:16 by aboussab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int main(int argc,char **argv)
 	head = combnitiones(argc,argv);
 	if(!head)
 		return (0);
-	 sorting_five(&head,&stack_b);
+	printf("%d",find_median(head));
+	// sorting_five(&head,&stack_b);
 	// // sorting_three(&head);
 	// head1 = head;
 	// while (head1 != NULL)

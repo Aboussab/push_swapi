@@ -6,7 +6,7 @@
 /*   By: aboussab <aboussab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 11:43:13 by aboussab          #+#    #+#             */
-/*   Updated: 2026/02/01 16:48:50 by aboussab         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:21:30 by aboussab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	sorting_five(t_list	**a,t_list	**b);
 void	sorting_two(t_list **head);
 
 int	ft_double(t_list **head_org);
+int	find_median(t_list *a);
 char	**bring_arg(char *str);
 
 void	free_split(char **ptr);
