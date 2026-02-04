@@ -6,7 +6,7 @@
 /*   By: aboussab <aboussab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 11:43:00 by aboussab          #+#    #+#             */
-/*   Updated: 2026/02/01 17:47:43 by aboussab         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:12:39 by aboussab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	ft_double(t_list **head_org)
 	t_list	*head;
 
 	head = (*head_org);
-	while ( head != NULL)
+	while (head)
 	{
 		node = head -> next;
-		while (node != NULL)
+		while (node)
 		{
 			if (node -> nmb == head -> nmb)
 				return (1);
@@ -139,4 +139,18 @@ t_list	*combnitiones(int argc,char **argv)
 	if (ft_double(&head))
 		return (write(2,"Error\n",5), ft_lstclear(&head), NULL);
 	return (head);
+}
+void	indexing_node(t_list	**a)
+{
+	int	index;
+	t_list	*ptr;
+
+	ptr = (*a);
+	index = 0;
+	while (ptr)
+	{
+		ptr -> index_n = index;
+		index++;
+		ptr = ptr -> next;
+	}
 }

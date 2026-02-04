@@ -6,7 +6,7 @@
 /*   By: aboussab <aboussab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 08:46:20 by aboussab          #+#    #+#             */
-/*   Updated: 2026/02/03 19:17:21 by aboussab         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:33:24 by aboussab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,27 +100,43 @@ void	sort_algo(t_list **a,t_list **b)
 	sorting_three(a);
 }
 
-int	fct_targe_node(t_list **a,t_list **b)
+int	fct_targe_node(t_list *lista,t_list *listb)
 {
 	int	index;
 	int	index_node;
-	t_list	*list;
 
-	list = (*b);
 	index = 1;
-	while (*a)
+	// if (((lista ->nmb) > (listb -> nmb)) && ((lista -> nmb) > (listb -> next -> nmb)))
+	// 	return (index);
+	// if (((lista ->nmb) < (listb -> nmb)) && ((lista -> nmb) < (listb -> next -> nmb)))
+	// 	return (index);
+	while (listb)
 	{
-		if (((list ->nmb) > ((*a)->nmb)) && ((list ->nmb) < ((*a) -> next -> nmb)))
+		if (((lista ->nmb) > (listb -> nmb)) && ((lista -> nmb) < (listb -> next -> nmb)))
 			index_node = index;
-		(*a) = (*a) -> next;
+		listb = listb -> next;
 		index++;
 	}
 	return (index_node);
 }
-int	cast_opert()
+int	cast_opert(t_list **a,t_list **b)
 {
-	
-	
+	int		i;
+	t_list	*node;
+	int		size;
+
+	node = (*a);
+	i = 0;
+	pb(b,a);
+	pb(b,a);
+
+	while (node)
+	{
+		node -> index_n = Find_Position(a,node -> nmb);
+		
+		size = ft_lstsize((*a));
+	}
+	return (0);
 }
 
 
