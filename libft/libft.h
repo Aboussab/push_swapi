@@ -22,14 +22,7 @@
 typedef struct s_list
 {
 	int			nmb;
-	int			index_n;
-	int			ra;
-	int			rra;
-	int			rb;
-	int			rrb;
-	int			rr;
-	int			rrr;
-	int			totale_move;
+	int			index;
 	struct s_list	*next;
 }					t_list;
 

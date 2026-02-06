@@ -12,9 +12,10 @@
 
 #include "push_swap.h"
 
-void	simplest_move(t_list **a,int index)
+void	simplest_move_a(t_list **a,int index)
 {
 	int		i;
+	int		rotate;
 	t_list	*node;
 
 	node = (*a);
@@ -29,10 +30,11 @@ void	simplest_move(t_list **a,int index)
 	}
 	else
 	{
-		while (index < i)
+		rotate = i - index;
+		while (rotate > 0)
 		{
 			rra(a);
-			index++;
+			rotate--;
 		}
 	}
 }
@@ -57,7 +59,7 @@ void bring_min(t_list **a,t_list **b)
 		index++;
 		node = node -> next;
 	}
-	simplest_move(a,index_min);
+	simplest_move_a(a,index_min);
 	pb(a,b);
 }
 void	sorting_five(t_list	**a,t_list	**b)

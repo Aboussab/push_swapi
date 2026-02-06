@@ -12,25 +12,6 @@
 
 #include "push_swap.h"
 
-int	Find_Position(t_list **a,int nmbr)
-{
-	t_list	*node;
-	size_t		index;
-	size_t		index_node;
-
-	node = (*a) -> next;
-	index = 1;
-	while(node != NULL)
-	{
-		if(nmbr == (node -> nmb))
-		{
-			index_node = index;
-		}
-		index++;
-		node = node -> next;
-	}
-	return (index_node);
-}
 void	sort_arry(int *arry,int size)
 {
 	int	i;
@@ -55,88 +36,151 @@ void	sort_arry(int *arry,int size)
 		j++;
 	}
 }
-int	find_median(t_list *a)
+void	indexing_stack(t_list *a,int *arry)
 {
+	int size;
+	int i;
+
+	size = ft_lstsize(a);
+	while (a)
+	{
+		i = 0;
+		while (i <= (size - 1))
+		{
+			if((a -> nmb) == arry[i])
+			{
+				a -> index = i;
+				break;
+			}
+			i++;
+		}
+		a = a -> next;
+	}
+}
+int	sorted_index_staack(t_list *a)
+{
+	t_list *node;
 	int	*arry;
 	int size;
 	int	i;
 
 	size = ft_lstsize(a);
 	i = 0;
+	node = a;
 	arry = (int *)malloc(size * sizeof(int));
 	if (!arry)
 		return (0);
-	while (a)
+	while (node)
 	{
-		arry[i] = a -> nmb;
-		a = a -> next;
+		arry[i] = node -> nmb;
+		node = node -> next;	
 		i++;  
 	}
 	sort_arry(arry,size);
-	i = size/2;
-	i = arry[i];
+	indexing_stack(a,arry);
 	free(arry);
 	return (i);
 }
-void	sort_algo(t_list **a,t_list **b)
+int	count_chunk(t_list **a,int chunk)
 {
-	int	median;
-	int	i;
+	t_list	*node;
+	size_t		chunk_count;
+
+	node = (*a);
+	chunk_count = 0;
+	while(node != NULL)
+	{
+		if((node -> index) < chunk)
+		{
+			chunk_count++;
+		}
+		node = node -> next;
+	}
+	return (chunk_count);
+}
+void	step_pushinb(t_list **a,t_list **b,int chunk)
+{
+	int	limit;
+	int	chunk_count;
 	int	size;
 
 	size = ft_lstsize((*a));
-	median = find_median((*a));
-	pb(a,b);
-	pb(a,b);
-	i = 0;
-	while (i <= (size - 3))
+	limit = 0;
+	sorted_index_staack((*a));
+	while (ft_lstsize(*a) > 3)
 	{
-		pb(a,b);
-		if (((*a) -> nmb) < median)
-			rb(b);
-		i++;
-		(*a) = (*a) -> next;
+		chunk_count = count_chunk(a,chunk);
+		limit += chunk;
+		while (chunk_count > 0)
+		{
+			if (((*a) -> index) <= limit)
+			{
+				pb(a,b);
+				chunk_count--;
+			}
+			else
+				ra(a);
+		}
 	}
 	sorting_three(a);
 }
-
-int	fct_targe_node(t_list *lista,t_list *listb)
-{
-	int	index;
-	int	index_node;
-
-	index = 1;
-	// if (((lista ->nmb) > (listb -> nmb)) && ((lista -> nmb) > (listb -> next -> nmb)))
-	// 	return (index);
-	// if (((lista ->nmb) < (listb -> nmb)) && ((lista -> nmb) < (listb -> next -> nmb)))
-	// 	return (index);
-	while (listb)
-	{
-		if (((lista ->nmb) > (listb -> nmb)) && ((lista -> nmb) < (listb -> next -> nmb)))
-			index_node = index;
-		listb = listb -> next;
-		index++;
-	}
-	return (index_node);
-}
-int	cast_opert(t_list **a,t_list **b)
+void	simplest_move_b(t_list **b,int index)
 {
 	int		i;
+	int		rotate;
 	t_list	*node;
-	int		size;
 
-	node = (*a);
-	i = 0;
-	pb(b,a);
-	pb(b,a);
-
-	while (node)
+	node = (*b);
+	i = ft_lstsize(node);
+	if(index <= (i/2))
 	{
-		node -> index_n = Find_Position(a,node -> nmb);
-		
-		size = ft_lstsize((*a));
+		while(index >= 1)
+		{
+			rb(b);
+			index--;
+		}	
 	}
-	return (0);
+	else
+	{
+		rotate = i - index;
+		while (rotate > 0)
+		{
+			rrb(b);
+			rotate--;
+		}
+	}
 }
+void	bring_biger_to_a(t_list **a,t_list **b)
+{
+	t_list	*node;
+	int		max;
+	int		size;
+	int		index_b;
+	int		i;
 
+	while (ft_lstsize((*b)) > 0)
+	{
+		node = (*b);
+		max = (*b) -> index;
+		i = 0;
+		while (node)
+		{
+			if (max <  (node -> index))
+			{
+				max = (node -> index);
+				index_b = i;
+			}
+			i++;
+			node = node -> next;
+		}
+		simplest_move_b(b,index_b);
+		pa(b,a);
+	}
+}
+void	sorting_algo(t_list **a,t_list **b, int chunk)
+{
+	step_pushinb(a,b,chunk);
+	bring_biger_to_a(a,b);
+	simplest_move_a(a,0);
+}
 
