@@ -109,9 +109,9 @@ void	step_pushinb(t_list **a,t_list **b,int chunk)
 	sorted_index_staack((*a));
 	while (ft_lstsize(*a) > 3)
 	{
-		chunk_count = count_chunk(a,chunk);
 		limit += chunk;
-		while (chunk_count > 0)
+		chunk_count = count_chunk(a,limit);
+		while ((chunk_count > 0) && (ft_lstsize(*a) > 3))
 		{
 			if (((*a) -> index) <= limit)
 			{
@@ -162,10 +162,11 @@ void	bring_biger_to_a(t_list **a,t_list **b)
 	{
 		node = (*b);
 		max = (*b) -> index;
+		index_b = 0;
 		i = 0;
 		while (node)
 		{
-			if (max <  (node -> index))
+			if (max <=  (node -> index))
 			{
 				max = (node -> index);
 				index_b = i;
