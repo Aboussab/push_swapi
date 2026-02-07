@@ -22,16 +22,17 @@ void	sorting_five(t_list	**a,t_list	**b);
 void	sorting_two(t_list **head);
 void	sorting_algo(t_list **a,t_list **b, int chunk);
 
-int	ft_double(t_list **head_org);
-int	find_median(t_list *a);
+int        ft_double(t_list **head_org);
+int     find_median(t_list *a);
 char	**bring_arg(char *str);
-int	fct_targe_node(t_list *lista,t_list *listb);
+int     fct_targe_node(t_list *lista,t_list *listb);
+int     sorted_index_staack(t_list *a);
 void	simplest_move_a(t_list **a,int index);
 
 void	free_split(char **ptr);
 void	sorting_three(t_list **head);
 t_list	*combnitiones(int argc,char **argv);
-void	sa(t_list **head);
+void    sa(t_list **head);
 void	sb(t_list **head);
 void	ss(t_list **stack_a,t_list **stack_b);
 void	ra(t_list **head);

@@ -12,117 +12,89 @@
 
 #include "push_swap.h"
 
-void	sort_arry(int *arry,int size)
-{
-	int	i;
-	int	j;
-	int	i_min;
-	int	tmp;
+// int	count_chunk(t_list **a,int chunk)
+// {
+// 	t_list	*node;
+// 	size_t		chunk_count;
 
-	j = 0;
-	while (j < size - 1)
-	{
-		 i_min=j;
-		 i = j + 1;
-		while (i < size)
-		{
-			if(arry[i]<arry[i_min])
-				i_min=i;
-			i++;
-		}
-		tmp=arry[j];
-		arry[j]=arry[i_min];
-		arry[i_min]=tmp;
-		j++;
-	}
-}
-void	indexing_stack(t_list *a,int *arry)
-{
-	int size;
-	int i;
+// 	node = (*a);
+// 	chunk_count = 0;
+// 	while(node != NULL)
+// 	{
+// 		if((node -> index) < chunk)
+// 		{
+// 			chunk_count++;
+// 		}
+// 		node = node -> next;
+// 	}
+// 	return (chunk_count);
+// }
+// int	bring_down_index(t_list **a,int limit)
+// {
+// 	t_list *end;
+// 	int		index;
+// 	int		i;
+// 	int		size;
 
-	size = ft_lstsize(a);
-	while (a)
-	{
-		i = 0;
-		while (i <= (size - 1))
-		{
-			if((a -> nmb) == arry[i])
-			{
-				a -> index = i;
-				break;
-			}
-			i++;
-		}
-		a = a -> next;
-	}
-}
-int	sorted_index_staack(t_list *a)
-{
-	t_list *node;
-	int	*arry;
-	int size;
-	int	i;
+// 	i = 0;
+// 	size = ft_lstsize(*a);
+// 	end = (*a);
+// 	while (i <= (size/2))
+// 	{
+// 		end = end -> next;
+// 		i++;
+// 	}
+// 	while (end)
+// 	{
+// 		if ((end -> index) <= limit)
+// 			index = (end -> index);
+// 		end = end -> next;
+// 	}
+// 	index = (size + 1) - index; 
+// 	return (index);
+// }
+// int	bring_up_index(t_list **a,int limit)
+// {
+// 	t_list *start;
+// 	int		index;
 
-	size = ft_lstsize(a);
-	i = 0;
-	node = a;
-	arry = (int *)malloc(size * sizeof(int));
-	if (!arry)
-		return (0);
-	while (node)
-	{
-		arry[i] = node -> nmb;
-		node = node -> next;	
-		i++;  
-	}
-	sort_arry(arry,size);
-	indexing_stack(a,arry);
-	free(arry);
-	return (i);
-}
-int	count_chunk(t_list **a,int chunk)
-{
-	t_list	*node;
-	size_t		chunk_count;
-
-	node = (*a);
-	chunk_count = 0;
-	while(node != NULL)
-	{
-		if((node -> index) < chunk)
-		{
-			chunk_count++;
-		}
-		node = node -> next;
-	}
-	return (chunk_count);
-}
+// 	start = (*a);
+// 	while (start)
+// 	{
+// 		if ((start -> index) <= limit)
+// 		{
+// 			index = (start -> index);
+// 			break;
+// 		}
+// 		start = start -> next;
+// 	}
+// 	return (index);
+// }
 void	step_pushinb(t_list **a,t_list **b,int chunk)
 {
-	int	limit;
-	int	chunk_count;
+	t_list	*node;
+	int	pushed;
 	int	size;
 
-	size = ft_lstsize((*a));
-	limit = 0;
-	sorted_index_staack((*a));
-	while (ft_lstsize(*a) > 3)
+	node = (*a);
+	size = ft_lstsize(*a);
+	pushed = 0;
+	while (pushed < size)
 	{
-		limit += chunk;
-		chunk_count = count_chunk(a,limit);
-		while ((chunk_count > 0) && (ft_lstsize(*a) > 3))
+		if (node -> index <= pushed)
 		{
-			if (((*a) -> index) <= limit)
-			{
-				pb(a,b);
-				chunk_count--;
-			}
-			else
-				ra(a);
+			pb(a,b);
+			rb(b);
+			pushed++;
 		}
+		else if (node -> index <= pushed + chunk)
+		{
+			pb(a,b);
+			pushed++;
+		}
+		else
+			ra(a);
 	}
-	sorting_three(a);
 }
 void	simplest_move_b(t_list **b,int index)
 {
@@ -180,6 +152,7 @@ void	bring_biger_to_a(t_list **a,t_list **b)
 }
 void	sorting_algo(t_list **a,t_list **b, int chunk)
 {
+	sorted_index_staack((*a));
 	step_pushinb(a,b,chunk);
 	bring_biger_to_a(a,b);
 	simplest_move_a(a,0);
