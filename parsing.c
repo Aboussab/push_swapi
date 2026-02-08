@@ -140,17 +140,3 @@ t_list	*combnitiones(int argc,char **argv)
 		return (write(2,"Error\n",5), ft_lstclear(&head), NULL);
 	return (head);
 }
-void	indexing_node(t_list	**a)
-{
-	int	index;
-	t_list	*ptr;
-
-	ptr = (*a);
-	index = 0;
-	while (ptr)
-	{
-		ptr -> index = index;
-		index++;
-		ptr = ptr -> next;
-	}
-}
