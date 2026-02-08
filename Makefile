@@ -10,34 +10,51 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-
-SRCS = 
-SRCS_BONUS =
+NAME = push_swap
 
 CC = cc
-
 CFLAGS = -Wall -Wextra -Werror
+
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
+SRCS = main.c \
+	parsing.c \
+	push.c \
+	rotate.c \
+	reverse_rotate.c \
+	swap.c \
+	sorting_three.c \
+	sorting_five.c \
+	sorting_arry.c \
+	sorting_algo.c
 
 OBJS = $(SRCS:.c=.o)
 
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
-
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
-bonus: $(OBJS) $(OBJS_BONUS)
-	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
-    
+$(LIBFT):
+	make -C $(LIBFT_DIR) bonus
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+bonus: $(OBJS)
+	make bonus -C $(LIBFT_DIR)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+
 clean:
-	rm -f $(OBJS) $(OBJS_BONUS)
+	rm -f $(OBJS)
+	make clean -C $(LIBFT_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+	make fclean -C $(LIBFT_DIR)
 
 re: fclean all
+
+.PHONY: all bonus clean fclean re
+

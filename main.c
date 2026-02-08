@@ -12,38 +12,46 @@
 
 #include "push_swap.h"
 
+int	check_unsorting(t_list *stack_a)
+{
+	t_list	*node1;
+	t_list	*node2;
+
+	node1 = stack_a;
+	node2 = stack_a -> next;
+	while (node2)
+	{
+		if ((node1 -> nmb) > (node2 -> nmb))
+			return (1);
+		node1 = node2;
+		node2 = node2 -> next;
+	}
+	return (0);
+}
 int main(int argc,char **argv)
 {
-	t_list *head1;int	i = 0;
-	t_list *head;
-	t_list *stack_b = NULL;
+	t_list *stack_a;
+	t_list *stack_b;
 
-	
-head = combnitiones(argc,argv);
-if(!head)
-	return (0);
-// sorting_algo(&head, &stack_b, 2);
-sorting_five(&head,&stack_b);
-head1 = head;
-while (head1 != NULL)
-{
-	printf("stack_a");
-	printf("node %d :  %d\n",i,head1 -> nmb);
-	head1 = head1 -> next;
-	i++;
-}
-// printf("%d\n",bring_biger(head));
-// push_a(&stack_b,&head);
-// printf("--------------------affiche what is on stack_b------------------------------------\n");
-// 	head1 = stack_b;
-// 	while (head1 != NULL)
-// 	{
-// 		printf("stack_b");
-// 		printf("node %d :  %d\n",i,head1 -> nmb);
-// 		head1 = head1 -> next;
-// 		i++;
-// 	}
-	ft_lstclear(&head);
+	stack_b = NULL;
+	if (argc == 0)
+		return(0);
+	stack_a = combnitiones(argc,argv);
+	if(!stack_a)
+		return (0);
+	if (!(check_unsorting(stack_a)))
+		return (ft_lstclear(&stack_a),0);
+	if (argc - 1 == 2)
+    	sorting_two(&stack_a);
+	else if (argc - 1 == 3)
+	    sorting_three(&stack_a);
+	else if (argc - 1 == 5)
+	    sorting_five(&stack_a, &stack_b);
+	else if (argc - 1 <= 100)
+	    sorting_algo(&stack_a, &stack_b, 20);
+	else if (argc - 1 <= 500)
+	    sorting_algo(&stack_a, &stack_b, 35);
+	ft_lstclear(&stack_a);
 	ft_lstclear(&stack_b);
 	return (0);
 }

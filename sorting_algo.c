@@ -97,7 +97,6 @@ int	bring_biger(t_list *b)
 void	push_a(t_list **a, t_list **b)
 {
 	int	index;
-	int size;
 
 	while (*b)
 	{

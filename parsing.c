@@ -140,3 +140,4 @@ t_list	*combnitiones(int argc,char **argv)
 		return (write(2,"Error\n",5), ft_lstclear(&head), NULL);
 	return (head);
 }
+
