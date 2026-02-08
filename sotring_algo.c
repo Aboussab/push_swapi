@@ -74,13 +74,11 @@ void	step_pushinb(t_list **a,t_list **b,int chunk)
 {
 	t_list	*node;
 	int	pushed;
-	int	size;
 
-	node = (*a);
-	size = ft_lstsize(*a);
 	pushed = 0;
-	while (pushed < size)
+	while ((*a))
 	{
+		node = (*a);
 		if (node -> index <= pushed)
 		{
 			pb(a,b);
@@ -122,39 +120,19 @@ void	simplest_move_b(t_list **b,int index)
 		}
 	}
 }
-void	bring_biger_to_a(t_list **a,t_list **b)
+void	push_back_to_a_indexed(t_list **a,t_list **b)
 {
-	t_list	*node;
-	int		max;
-	int		size;
-	int		index_b;
-	int		i;
-
-	while (ft_lstsize((*b)) > 0)
-	{
-		node = (*b);
-		max = (*b) -> index;
-		index_b = 0;
-		i = 0;
-		while (node)
-		{
-			if (max <=  (node -> index))
-			{
-				max = (node -> index);
-				index_b = i;
-			}
-			i++;
-			node = node -> next;
-		}
-		simplest_move_b(b,index_b);
-		pa(b,a);
-	}
+	gitad
 }
+
+
 void	sorting_algo(t_list **a,t_list **b, int chunk)
 {
 	sorted_index_staack((*a));
+	printf("koooooool");
 	step_pushinb(a,b,chunk);
-	bring_biger_to_a(a,b);
-	simplest_move_a(a,0);
+	push_back_to_a_indexed(a,b);
+	//bring_biger_to_a(a,b);
+	// simplest_move_a(a,0);
 }
 

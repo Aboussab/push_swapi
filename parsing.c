@@ -149,7 +149,7 @@ void	indexing_node(t_list	**a)
 	index = 0;
 	while (ptr)
 	{
-		ptr -> index_n = index;
+		ptr -> index = index;
 		index++;
 		ptr = ptr -> next;
 	}
