@@ -17,13 +17,15 @@ void	rotate(t_list **head)
 	t_list	*node1;
 	t_list	*ptr;
 
-	node1 = *head ;
-	ptr = *head ;
-	*head = node1 -> next;
-	while ((ptr -> next) != NULL)
-		ptr = ptr -> next;
-	ptr -> next = node1;
-	node1 -> next = NULL;
+	if (!head || !*head || !(*head)->next)
+		return;
+	node1 = *head;
+	ptr = *head;
+	*head = node1->next;
+	while (ptr->next != NULL)
+		ptr = ptr->next;
+	ptr->next = node1;
+	node1->next = NULL;
 }
 
 void	ra(t_list **head)
