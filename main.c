@@ -48,7 +48,7 @@ t_list	*combnitiones(int argc, char **argv)
 		j++;
 	}
 	if (ft_double(&head))
-		return (write(2, "Error\n", 5), ft_lstclear(&head), NULL);
+		return (write(2, "Error\n", 6), ft_lstclear(&head), NULL);
 	return (head);
 }
 
@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 	t_list	*stack_b;
 
 	stack_b = NULL;
-	if (argc == 0)
+	if (argc == 1)
 		return (0);
 	stack_a = combnitiones(argc, argv);
 	if (!stack_a)

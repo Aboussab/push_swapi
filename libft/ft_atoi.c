@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
 	long long	n;
 	size_t		i;
@@ -33,10 +33,10 @@ int	ft_atoi(const char *nptr)
 	{
 		j = nptr[i++] - 48;
 		if ((n > INT_MAX / 10) || (n == INT_MAX / 10 && j > 7 && sin == 1))
-			return (-1);
+			return (2147483648);
 		if (n > -(INT_MIN / 10) || (n == -(INT_MIN / 10) && j > 8 && sin == -1))
-			return (0);
+			return (2147483648);
 		n = j + (n * 10);
 	}
-	return ((int)(n * sin));
+	return ((n * sin));
 }

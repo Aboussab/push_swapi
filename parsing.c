@@ -95,7 +95,7 @@ char	**bring_arg(char *str)
 t_list	*insert_list(char *str)
 {
 	size_t	i;
-	int		nmb;
+	long	nmb;
 	t_list	*head;
 	t_list	*new_tmp;
 	char	**ptr;
@@ -104,6 +104,8 @@ t_list	*insert_list(char *str)
 	if (!ptr || !str)
 		return (NULL);
 	nmb = ft_atoi(ptr[0]);
+	if (nmb > INT_MAX)
+		return (free_split(ptr),NULL);
 	head = ft_lstnew(nmb);
 	if (!head)
 		return (free_split(ptr), ft_lstclear(&head), NULL);
@@ -111,6 +113,8 @@ t_list	*insert_list(char *str)
 	while (ptr[i] != NULL)
 	{
 		nmb = ft_atoi(ptr[i]);
+		if (nmb > INT_MAX)
+			return (free_split(ptr), ft_lstclear(&head), NULL);
 		new_tmp = ft_lstnew(nmb);
 		if (!new_tmp)
 			return (free_split(ptr), ft_lstclear(&head), NULL);
