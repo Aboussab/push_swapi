@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **lst,int nmb)
+void	ft_lstdelone(t_list **lst, int nmb)
 {
 	t_list	*head;
 	t_list	*tmp_node;
@@ -21,7 +21,7 @@ void	ft_lstdelone(t_list **lst,int nmb)
 	while ((head -> nmb) != nmb || (!head))
 	{
 		tmp_node = head;
-		head = head -> next;	
+		head = head -> next;
 	}
 	tmp_node -> next = head -> next;
 	free(head);

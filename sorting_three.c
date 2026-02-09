@@ -12,37 +12,37 @@
 
 #include "push_swap.h"
 
-void sorting_two(t_list **head)
+void	sorting_two(t_list **head)
 {
-	if (((*head) -> nmb) > ((*head) -> next -> nmb))
+	if (((*head)-> nmb) > ((*head)-> next -> nmb))
 		sa(head);
 }
-void sorting_three(t_list **head)
+
+void	sorting_three(t_list **head)
 {
 	t_list	*node;
 	int		max;
 
-	max = (*head) -> nmb;
-	node  = (*head) ->next;
+	max = (*head)-> nmb;
+	node = (*head)-> next;
 	if ((max > (node -> nmb)) && (max > (node -> next -> nmb)))
 	{
 		ra(head);
-		if ((node -> nmb) >  (node -> next -> nmb))
+		if ((node -> nmb) > (node -> next -> nmb))
 			sa(head);
-		return;
+		return ;
 	}
-	max = node -> next  -> nmb;
-	if ((max > ((*head) -> nmb)) && (max > (node -> nmb)))
+	max = node -> next -> nmb;
+	if ((max > ((*head)-> nmb)) && (max > (node -> nmb)))
 	{
-		if (((*head)-> nmb) >  (node -> nmb))
+		if (((*head)-> nmb) > (node -> nmb))
 			sa(head);
-		return;
+		return ;
 	}
 	max = node -> nmb;
-	if ((max > ((*head) -> nmb)) && (max > (node -> next -> nmb)))
+	if ((max > ((*head)-> nmb)) && (max > (node -> next -> nmb)))
 	{
 		rra(head);
-		if (((*head) -> nmb) > ((*head) -> next -> nmb))
-			sa(head);
+		sorting_two(head);
 	}
 }

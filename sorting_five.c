@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	simplest_move_a(t_list **a,int index)
+void	simplest_move_a(t_list **a, int index)
 {
 	int		i;
 	int		rotate;
@@ -20,13 +20,13 @@ void	simplest_move_a(t_list **a,int index)
 
 	node = (*a);
 	i = ft_lstsize(node);
-	if(index <= (i/2))
+	if (index <= (i / 2))
 	{
-		while(index >= 1)
+		while (index >= 1)
 		{
 			ra(a);
 			index--;
-		}	
+		}
 	}
 	else
 	{
@@ -38,20 +38,21 @@ void	simplest_move_a(t_list **a,int index)
 		}
 	}
 }
-void bring_min(t_list **a,t_list **b)
+
+void	bring_min(t_list **a, t_list **b)
 {
 	t_list	*node;
 	int		min;
-	size_t		index;
-	size_t		index_min;
+	size_t	index;
+	size_t	index_min;
 
-	node = (*a) -> next;
-	min = (*a) -> nmb;
+	node = (*a)-> next;
+	min = (*a)-> nmb;
 	index = 1;
 	index_min = 0;
-	while(node != NULL)
+	while (node != NULL)
 	{
-		if(min > (node -> nmb))
+		if (min > (node -> nmb))
 		{
 			min = node -> nmb;
 			index_min = index;
@@ -59,16 +60,15 @@ void bring_min(t_list **a,t_list **b)
 		index++;
 		node = node -> next;
 	}
-	simplest_move_a(a,index_min);
-	pb(a,b);
-}
-void	sorting_five(t_list	**a,t_list	**b)
-{
-	bring_min(a,b);
-	bring_min(a,b);
-	sorting_three(a);
-	pa(b,a);
-	pa(b,a);
-	
+	simplest_move_a(a, index_min);
+	pb(a, b);
 }
 
+void	sorting_five(t_list	**a, t_list	**b)
+{
+	bring_min(a, b);
+	bring_min(a, b);
+	sorting_three(a);
+	pa(b, a);
+	pa(b, a);
+}

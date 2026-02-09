@@ -20,24 +20,27 @@ void	rotate(t_list **head)
 	node1 = *head ;
 	ptr = *head ;
 	*head = node1 -> next;
-	while((ptr -> next) != NULL)
+	while ((ptr -> next) != NULL)
 		ptr = ptr -> next;
 	ptr -> next = node1;
-	node1 -> next = NULL; 
+	node1 -> next = NULL;
 }
+
 void	ra(t_list **head)
 {
 	rotate(head);
-	write(1,"ra\n",3);
+	write(1, "ra\n", 3);
 }
+
 void	rb(t_list **head)
 {
 	rotate(head);
-	write(1,"rb\n",3);
+	write(1, "rb\n", 3);
 }
-void rr(t_list **stack_a,t_list **stack_b)
+
+void	rr(t_list **stack_a, t_list **stack_b)
 {
 	rotate(stack_a);
 	rotate(stack_b);
-	write(1,"rr\n",3);	
+	write(1, "rr\n", 3);
 }

@@ -13,37 +13,44 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-#include"libft/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <limits.h>
+# include "libft/libft.h"
 
-void	sorting_five(t_list	**a,t_list	**b);
-void	sorting_two(t_list **head);
-void	sorting_algo(t_list **a,t_list **b, int chunk);
-
-int        ft_double(t_list **head_org);
-int     find_median(t_list *a);
-char	**bring_arg(char *str);
-int     fct_targe_node(t_list *lista,t_list *listb);
-int     sorted_index_staack(t_list *a);
-void	simplest_move_a(t_list **a,int index);
-
+t_list	*combnitiones(int argc, char **argv);
 void	free_split(char **ptr);
-void	sorting_three(t_list **head);
-t_list	*combnitiones(int argc,char **argv);
-void    sa(t_list **head);
+int		ft_double(t_list **head_org);
+int		valide_arg(char *str);
+char	**bring_arg(char *str);
+t_list	*insert_list(char *str);
+void	sa(t_list **head);
 void	sb(t_list **head);
-void	ss(t_list **stack_a,t_list **stack_b);
+void	ss(t_list **stack_a, t_list **stack_b);
 void	ra(t_list **head);
 void	rb(t_list **head);
-void	rr(t_list **stack_a,t_list **stack_b);
+void	rr(t_list **stack_a, t_list **stack_b);
 void	rra(t_list **head);
 void	rrb(t_list **head);
-void	rrr(t_list **stack_a,t_list **stack_b);
-void	pa(t_list **stack_b,t_list **stack_a);
-void	pb(t_list **stack_a,t_list **stack_b);
+void	rrr(t_list **stack_a, t_list **stack_b);
+void	pa(t_list **stack_b, t_list **stack_a);
+void	pb(t_list **stack_a, t_list **stack_b);
 
+void	sorting_five(t_list	**a, t_list	**b);
+void	bring_min(t_list **a, t_list **b);
+void	simplest_move_a(t_list **a, int index);
 
+void	sorting_three(t_list **head);
+void	sorting_two(t_list **head);
+
+void	sorting_algo(t_list **a, t_list **b, int chunk);
+void	step_pushinb(t_list **a, t_list **b, int chunk);
+void	indexing_node(t_list *b);
+int		bring_biger(t_list *b);
+void	simplest_move_b(t_list **b, int index);
+void	push_a(t_list **a, t_list **b);
+int		sorted_index_staack(t_list *a);
+void	indexing_stack(t_list *a, int *arry);
+void	sort_arry(int *arry, int size);
 
 #endif

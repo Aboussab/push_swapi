@@ -12,21 +12,23 @@
 
 #include "push_swap.h"
 
-void push(t_list **stack_a,t_list **stack_b)
+void	push(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*node_a;
 
-	node_a = (*stack_a)->next;
-	ft_lstadd_front(stack_b,(*stack_a));
-	*stack_a = node_a; 
+	node_a = (*stack_a)-> next;
+	ft_lstadd_front(stack_b, (*stack_a));
+	*stack_a = node_a;
 }
-void	pa(t_list **stack_b,t_list **stack_a)
+
+void	pa(t_list **stack_b, t_list **stack_a)
 {
-	push(stack_b,stack_a);
-	write(1,"pa\n",3);
+	push(stack_b, stack_a);
+	write(1, "pa\n", 3);
 }
-void	pb(t_list **stack_a,t_list **stack_b)
+
+void	pb(t_list **stack_a, t_list **stack_b)
 {
-	push(stack_a,stack_b);
-	write(1,"pb\n",3);
+	push(stack_a, stack_b);
+	write(1, "pb\n", 3);
 }

@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-void	step_pushinb(t_list **a,t_list **b,int chunk)
+void	step_pushinb(t_list **a, t_list **b, int chunk)
 {
 	t_list	*node;
-	int	pushed;
+	int		pushed;
 
 	pushed = 0;
 	while ((*a))
@@ -23,22 +23,23 @@ void	step_pushinb(t_list **a,t_list **b,int chunk)
 		node = (*a);
 		if (node -> index <= pushed)
 		{
-			pb(a,b);
+			pb(a, b);
 			rb(b);
 			pushed++;
 		}
 		else if (node -> index <= pushed + chunk)
 		{
-			pb(a,b);
+			pb(a, b);
 			pushed++;
 		}
 		else
 			ra(a);
 	}
 }
+
 void	indexing_node(t_list *b)
 {
-	int	index;
+	int		index;
 	t_list	*ptr;
 
 	ptr = b;
@@ -50,6 +51,7 @@ void	indexing_node(t_list *b)
 		ptr = ptr -> next;
 	}
 }
+
 int	bring_biger(t_list *b)
 {
 	int	max;
@@ -68,7 +70,9 @@ int	bring_biger(t_list *b)
 		b = b -> next;
 	}
 	return (index);
-}void	simplest_move_b(t_list **b,int index)
+}
+
+void	simplest_move_b(t_list **b, int index)
 {
 	int		i;
 	int		rotate;
@@ -76,13 +80,13 @@ int	bring_biger(t_list *b)
 
 	node = (*b);
 	i = ft_lstsize(node);
-	if(index <= (i/2))
+	if (index <= (i / 2))
 	{
-		while(index >= 1)
+		while (index >= 1)
 		{
 			rb(b);
 			index--;
-		}	
+		}
 	}
 	else
 	{
@@ -94,6 +98,7 @@ int	bring_biger(t_list *b)
 		}
 	}
 }
+
 void	push_a(t_list **a, t_list **b)
 {
 	int	index;
@@ -101,16 +106,7 @@ void	push_a(t_list **a, t_list **b)
 	while (*b)
 	{
 		index = bring_biger(*b);
-		simplest_move_b(b,index);
-		pa(b,a);
+		simplest_move_b(b, index);
+		pa(b, a);
 	}
 }
-
-
-void	sorting_algo(t_list **a,t_list **b, int chunk)
-{
-	sorted_index_staack((*a));
-	step_pushinb(a,b,chunk);
-	push_a(a,b);
-}
-

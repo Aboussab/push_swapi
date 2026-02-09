@@ -28,29 +28,60 @@ int	check_unsorting(t_list *stack_a)
 	}
 	return (0);
 }
-int main(int argc,char **argv)
+
+t_list	*combnitiones(int argc, char **argv)
 {
-	t_list *stack_a;
-	t_list *stack_b;
+	t_list	*head;
+	t_list	*new_tmp;
+	int		j;
+
+	j = 2;
+	head = insert_list(argv[1]);
+	if (!head || !argv)
+		return (write(2, "Error\n", 6), NULL);
+	while (j < argc)
+	{
+		new_tmp = insert_list(argv[j]);
+		if (!new_tmp)
+			return (write(2, "Error\n", 6), ft_lstclear(&head), NULL);
+		ft_lstadd_back(&head, new_tmp);
+		j++;
+	}
+	if (ft_double(&head))
+		return (write(2, "Error\n", 5), ft_lstclear(&head), NULL);
+	return (head);
+}
+
+void	sorting_algo(t_list **a, t_list **b, int chunk)
+{
+	sorted_index_staack((*a));
+	step_pushinb(a, b, chunk);
+	push_a(a, b);
+}
+
+int	main(int argc, char **argv)
+{
+	t_list	*stack_a;
+	t_list	*stack_b;
 
 	stack_b = NULL;
 	if (argc == 0)
-		return(0);
-	stack_a = combnitiones(argc,argv);
-	if(!stack_a)
+		return (0);
+	stack_a = combnitiones(argc, argv);
+	if (!stack_a)
 		return (0);
 	if (!(check_unsorting(stack_a)))
-		return (ft_lstclear(&stack_a),0);
+		return (ft_lstclear(&stack_a), 0);
 	if (argc - 1 == 2)
-    	sorting_two(&stack_a);
+		sorting_two(&stack_a);
 	else if (argc - 1 == 3)
-	    sorting_three(&stack_a);
+		sorting_three(&stack_a);
 	else if (argc - 1 == 5)
-	    sorting_five(&stack_a, &stack_b);
+		sorting_five(&stack_a, &stack_b);
 	else if (argc - 1 <= 100)
-	    sorting_algo(&stack_a, &stack_b, 20);
+		sorting_algo(&stack_a, &stack_b, 20);
 	else if (argc - 1 <= 500)
-	    sorting_algo(&stack_a, &stack_b, 35);
+		sorting_algo(&stack_a, &stack_b, 35);
 	ft_lstclear(&stack_a);
 	ft_lstclear(&stack_b);
 	return (0);
