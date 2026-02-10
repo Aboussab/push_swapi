@@ -33,27 +33,24 @@ t_list	*combnitiones(int argc, char **argv)
 {
 	t_list	*head;
 	t_list	*new_tmp;
+	long	nmb;
 	int		j;
 
-	j = 1;
-	head = insert_list(argv[1],NULL, NULL, NULL);
+	j = 2;
+	nmb = 0;
+	head = insert_list(argv[1], nmb, 1);
 	if (!head || !argv)
 		return (write(2, "Error\n", 6), NULL);
 	while (j < argc)
 	{
-		new_tmp = insert_list(argv[j],NULL, NULL, NULL);
+		new_tmp = insert_list(argv[j], nmb, 1);
 		if (!new_tmp)
-		{
 			return (write(2, "Error\n", 6), ft_lstclear(&head), NULL);
-		}
 		ft_lstadd_back(&head, new_tmp);
 		j++;
 	}
 	if (ft_double(&head))
-	{
-			printf("heeeeeeeeeeere!!!\n");
 		return (write(2, "Error\n", 6), ft_lstclear(&head), NULL);
-	}
 	return (head);
 }
 

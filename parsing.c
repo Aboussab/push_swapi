@@ -92,10 +92,11 @@ char	**bring_arg(char *str)
 	return (ptr);
 }
 
-t_list	*insert_list(char *str, char	**ptr, t_list	*head, t_list	*new_tmp)
+t_list	*insert_list(char *str, long nmb, size_t i)
 {
-	size_t	i;
-	long	nmb;
+	t_list	*new_tmp;
+	t_list	*head;
+	char	**ptr;
 
 	ptr = bring_arg(str);
 	if (!ptr || !str)
@@ -106,7 +107,6 @@ t_list	*insert_list(char *str, char	**ptr, t_list	*head, t_list	*new_tmp)
 	head = ft_lstnew(nmb);
 	if (!head)
 		return (free_split(ptr), ft_lstclear(&head), NULL);
-	i = 1;
 	while (ptr[i] != NULL)
 	{
 		nmb = ft_atoi(ptr[i]);

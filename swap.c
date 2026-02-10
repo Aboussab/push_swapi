@@ -16,7 +16,7 @@ void	swap(t_list **head)
 {
 	t_list	*node2;
 
-	if (!head || !(*head) || !(*head)-> next)
+	if (!head || !*head || !(*head)-> next)
 		return ;
 	node2 = (*head)-> next;
 	(*head)-> next = node2 -> next;
