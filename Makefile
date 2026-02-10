@@ -13,7 +13,7 @@
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a

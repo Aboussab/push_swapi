@@ -17,8 +17,8 @@ void	reverse_rotate(t_list **head)
 	t_list	*last_node;
 	t_list	*node_l;
 
-	 if (!head || !*head || !(*head)->next)
-        return;
+	if (!head || !*head || !(*head)-> next)
+		return ;
 	last_node = (*head)-> next;
 	node_l = (*head);
 	while ((last_node -> next) != NULL)

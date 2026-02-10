@@ -17,8 +17,8 @@ void	rotate(t_list **head)
 	t_list	*node1;
 	t_list	*ptr;
 
-	if (!head || !*head || !(*head)->next)
-		return;
+	if (!head || !*head || !(*head)-> next)
+		return ;
 	node1 = *head;
 	ptr = *head;
 	*head = node1->next;

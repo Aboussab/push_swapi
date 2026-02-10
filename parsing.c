@@ -92,20 +92,17 @@ char	**bring_arg(char *str)
 	return (ptr);
 }
 
-t_list	*insert_list(char *str)
+t_list	*insert_list(char *str, char	**ptr, t_list	*head, t_list	*new_tmp)
 {
 	size_t	i;
 	long	nmb;
-	t_list	*head;
-	t_list	*new_tmp;
-	char	**ptr;
 
 	ptr = bring_arg(str);
 	if (!ptr || !str)
 		return (NULL);
 	nmb = ft_atoi(ptr[0]);
 	if (nmb > INT_MAX)
-		return (free_split(ptr),NULL);
+		return (free_split(ptr), NULL);
 	head = ft_lstnew(nmb);
 	if (!head)
 		return (free_split(ptr), ft_lstclear(&head), NULL);
