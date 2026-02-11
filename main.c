@@ -36,11 +36,13 @@ t_list	*combnitiones(int argc, char **argv)
 	long	nmb;
 	int		j;
 
+	if (argc == 1)
+		return (NULL);
 	j = 2;
 	nmb = 0;
 	head = insert_list(argv[1], nmb, 1);
 	if (!head || !argv)
-		return (write(2, "Error\n", 6), NULL);
+		return (ft_lstclear(&head), write(2, "Error\n", 6), NULL);
 	while (j < argc)
 	{
 		new_tmp = insert_list(argv[j], nmb, 1);
@@ -65,26 +67,26 @@ int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
+	int		size;
 
 	stack_b = NULL;
-	if (argc == 1)
-		return (0);
 	stack_a = combnitiones(argc, argv);
 	if (!stack_a)
 		return (0);
+	size = ft_lstsize(stack_a);
+	if (size == 0 || size == 1)
+		return (ft_lstclear(&stack_a), 0);
 	if (!(check_unsorting(stack_a)))
 		return (ft_lstclear(&stack_a), 0);
-	if (argc - 1 == 2)
+	if (size == 2)
 		sorting_two(&stack_a);
-	else if (argc - 1 == 3)
+	else if (size == 3)
 		sorting_three(&stack_a);
-	else if (argc - 1 == 5)
+	else if (size == 5)
 		sorting_five(&stack_a, &stack_b);
-	else if (argc - 1 <= 100)
+	else if (size <= 100)
 		sorting_algo(&stack_a, &stack_b, 20);
-	else if (argc - 1 <= 500)
+	else if (size <= 500)
 		sorting_algo(&stack_a, &stack_b, 35);
-	ft_lstclear(&stack_a);
-	ft_lstclear(&stack_b);
-	return (0);
+	return (ft_lstclear(&stack_a), ft_lstclear(&stack_b), 0);
 }
