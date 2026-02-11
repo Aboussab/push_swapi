@@ -55,10 +55,14 @@ int	valide_arg(char *str)
 		return (0);
 	i = 0;
 	n = w_count(str, ' ');
+	if (n == 0)
+		return (0);
 	ptr = ft_split(str, ' ');
+	if (!ptr || !ptr[0])
+		return (free_split(ptr), 0);
 	while (i < n)
 	{
-		if (! (ft_isdigit(ptr[i])))
+		if (!ptr[i] || !(ft_isdigit(ptr[i])))
 			return (free_split(ptr), 0);
 		i++;
 	}
@@ -75,10 +79,14 @@ char	**bring_arg(char *str)
 		return (NULL);
 	i = 0;
 	n = w_count(str, ' ');
+	if (n == 0)
+		return (NULL);
 	ptr = ft_split(str, ' ');
+	if (!ptr || !ptr[0])
+		return (free_split(ptr), NULL);
 	while (i < n)
 	{
-		if (!(ft_isdigit(ptr[i])))
+		if (!ptr[i] || !(ft_isdigit(ptr[i])))
 			return (free_split(ptr), NULL);
 		i++;
 	}
@@ -86,7 +94,7 @@ char	**bring_arg(char *str)
 	while (i < n)
 	{
 		if ((valide_arg(ptr[i]) == 0))
-			return (write(2, "Error\n", 6), free_split(ptr), NULL);
+			return (free_split(ptr), NULL);
 		i++;
 	}
 	return (ptr);
@@ -101,6 +109,8 @@ t_list	*insert_list(char *str, long nmb, size_t i)
 	ptr = bring_arg(str);
 	if (!ptr || !str)
 		return (NULL);
+	if (!ptr[0])
+		return (free_split(ptr), NULL);
 	nmb = ft_atoi(ptr[0]);
 	if (nmb > INT_MAX)
 		return (free_split(ptr), NULL);
@@ -109,7 +119,6 @@ t_list	*insert_list(char *str, long nmb, size_t i)
 		return (free_split(ptr), ft_lstclear(&head), NULL);
 	while (ptr[i] != NULL)
 	{
-		// guard against empty string
 		nmb = ft_atoi(ptr[i]);
 		if (nmb > INT_MAX)
 			return (free_split(ptr), ft_lstclear(&head), NULL);

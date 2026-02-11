@@ -35,22 +35,35 @@ t_list	*combnitiones(int argc, char **argv)
 	t_list	*new_tmp;
 	long	nmb;
 	int		j;
+	int		found;
 
 	if (argc == 1)
 		return (NULL);
-	j = 2;
+	j = 1;
 	nmb = 0;
-	head = insert_list(argv[1], nmb, 1);
-	if (!head || !argv)
-		return (ft_lstclear(&head), write(2, "Error\n", 6), NULL);
+	head = NULL;
+	found = 0;
 	while (j < argc)
 	{
+		if (argv[j] && w_count(argv[j], ' ') == 0)
+		{
+			j++;
+			continue ;
+		}
 		new_tmp = insert_list(argv[j], nmb, 1);
 		if (!new_tmp)
 			return (write(2, "Error\n", 6), ft_lstclear(&head), NULL);
-		ft_lstadd_back(&head, new_tmp);
+		if (!found)
+		{
+			head = new_tmp;
+			found = 1;
+		}
+		else
+			ft_lstadd_back(&head, new_tmp);
 		j++;
 	}
+	if (!head)
+		return (NULL);
 	if (ft_double(&head))
 		return (write(2, "Error\n", 6), ft_lstclear(&head), NULL);
 	return (head);
