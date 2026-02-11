@@ -21,12 +21,9 @@ long	ft_atoi(const char *nptr)
 
 	i = 0;
 	sin = 1;
-	n = 0;	
-	
+	n = 0;
 	while (nptr && ((nptr[i] <= 13 && nptr[i] >= 9) || nptr[i] == 32))
 		i++;
-	if (!nptr || nptr[i] == '\0')
-		return (2147483649);
 	if ((nptr[i] == 45 || nptr[i] == 43) && nptr[i])
 	{
 		if (nptr[i++] == 45)

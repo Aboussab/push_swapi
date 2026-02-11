@@ -34,3 +34,10 @@ void	pb(t_list **stack_a, t_list **stack_b)
 	push(stack_a, stack_b);
 	write(1, "pb\n", 3);
 }
+
+t_list	*initials(long *nmb, int *j)
+{
+	*j = 1;
+	*nmb = 0;
+	return (NULL);
+}

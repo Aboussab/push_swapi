@@ -28,11 +28,14 @@ int	check_unsorting(t_list *stack_a)
 	}
 	return (0);
 }
-t_list *initials(long *nmb, int *j)
+
+t_list	*check_haedr(t_list **head)
 {
-	*j = 1;
-	*nmb = 0;
-	return (NULL);
+	if (!(*head))
+		return (NULL);
+	if (ft_double(head))
+		return (write(2, "Error\n", 6), ft_lstclear(head), NULL);
+	return (*head);
 }
 
 t_list	*combnitiones(int argc, char **argv, int found)
@@ -47,21 +50,21 @@ t_list	*combnitiones(int argc, char **argv, int found)
 	head = initials(&nmb, &j);
 	while (j < argc)
 	{
-		if (argv[j] && w_count(argv[j++], ' ') == 0)
+		if (argv[j] && w_count(argv[j], ' ') == 0)
+		{
+			j++;
 			continue ;
-		new_tmp = insert_list(argv[j], nmb, 1);
+		}
+		new_tmp = insert_list(argv[j], nmb, 1, NULL);
 		if (!new_tmp)
 			return (write(2, "Error\n", 6), ft_lstclear(&head), NULL);
 		if (found++ == 0)
 			head = new_tmp;
 		else
 			ft_lstadd_back(&head, new_tmp);
+		j++;
 	}
-	if (!head)
-		return (NULL);
-	if (ft_double(&head))
-		return (write(2, "Error\n", 6), ft_lstclear(&head), NULL);
-	return (head);
+	return (check_haedr(&head));
 }
 
 void	sorting_algo(t_list **a, t_list **b, int chunk)
