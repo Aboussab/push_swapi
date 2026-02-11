@@ -86,16 +86,14 @@ char	**bring_arg(char *str)
 		return (free_split(ptr), NULL);
 	while (i < n)
 	{
-		if (!ptr[i] || !(ft_isdigit(ptr[i])))
+		if (!ptr[i] || !(ft_isdigit(ptr[i++])))
 			return (free_split(ptr), NULL);
-		i++;
 	}
 	i = 0;
 	while (i < n)
 	{
-		if ((valide_arg(ptr[i]) == 0))
+		if ((valide_arg(ptr[i++]) == 0))
 			return (free_split(ptr), NULL);
-		i++;
 	}
 	return (ptr);
 }
@@ -111,8 +109,7 @@ t_list	*insert_list(char *str, long nmb, size_t i)
 		return (NULL);
 	if (!ptr[0])
 		return (free_split(ptr), NULL);
-	nmb = ft_atoi(ptr[0]);
-	if (nmb > INT_MAX)
+	if ((nmb = ft_atoi(ptr[0])) > INT_MAX)
 		return (free_split(ptr), NULL);
 	head = ft_lstnew(nmb);
 	if (!head)
@@ -126,7 +123,6 @@ t_list	*insert_list(char *str, long nmb, size_t i)
 		if (!new_tmp)
 			return (free_split(ptr), ft_lstclear(&head), NULL);
 		ft_lstadd_back(&head, new_tmp);
-		i++;
 	}
 	return (free_split(ptr), head);
 }

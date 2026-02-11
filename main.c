@@ -28,39 +28,34 @@ int	check_unsorting(t_list *stack_a)
 	}
 	return (0);
 }
+t_list *initials(long *nmb, int *j)
+{
+	*j = 1;
+	*nmb = 0;
+	return (NULL);
+}
 
-t_list	*combnitiones(int argc, char **argv)
+t_list	*combnitiones(int argc, char **argv, int found)
 {
 	t_list	*head;
 	t_list	*new_tmp;
 	long	nmb;
 	int		j;
-	int		found;
 
 	if (argc == 1)
 		return (NULL);
-	j = 1;
-	nmb = 0;
-	head = NULL;
-	found = 0;
+	head = initials(&nmb, &j);
 	while (j < argc)
 	{
-		if (argv[j] && w_count(argv[j], ' ') == 0)
-		{
-			j++;
+		if (argv[j] && w_count(argv[j++], ' ') == 0)
 			continue ;
-		}
 		new_tmp = insert_list(argv[j], nmb, 1);
 		if (!new_tmp)
 			return (write(2, "Error\n", 6), ft_lstclear(&head), NULL);
-		if (!found)
-		{
+		if (found++ == 0)
 			head = new_tmp;
-			found = 1;
-		}
 		else
 			ft_lstadd_back(&head, new_tmp);
-		j++;
 	}
 	if (!head)
 		return (NULL);
@@ -83,7 +78,7 @@ int	main(int argc, char **argv)
 	int		size;
 
 	stack_b = NULL;
-	stack_a = combnitiones(argc, argv);
+	stack_a = combnitiones(argc, argv, 0);
 	if (!stack_a)
 		return (0);
 	size = ft_lstsize(stack_a);

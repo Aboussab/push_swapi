@@ -18,7 +18,7 @@
 # include <limits.h>
 # include "libft/libft.h"
 
-t_list	*combnitiones(int argc, char **argv);
+t_list	*combnitiones(int argc, char **argv, int found);
 void	free_split(char **ptr);
 int		ft_double(t_list **head_org);
 int		valide_arg(char *str);
