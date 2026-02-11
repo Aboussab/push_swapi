@@ -55,7 +55,7 @@ t_list	*combnitiones(int argc, char **argv, int found)
 			j++;
 			continue ;
 		}
-		new_tmp = insert_list(argv[j], nmb, 1, NULL);
+		new_tmp = insert_list(argv[j], nmb, 1, NULL );
 		if (!new_tmp)
 			return (write(2, "Error\n", 6), ft_lstclear(&head), NULL);
 		if (found++ == 0)
