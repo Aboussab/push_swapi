@@ -93,11 +93,11 @@ int	main(int argc, char **argv)
 		sorting_two(&stack_a);
 	else if (size == 3)
 		sorting_three(&stack_a);
-	else if (size == 5)
+	else if (size == 5 || size == 4)
 		sorting_five(&stack_a, &stack_b);
 	else if (size <= 100)
 		sorting_algo(&stack_a, &stack_b, 20);
-	else if (size <= 500)
+	else
 		sorting_algo(&stack_a, &stack_b, 35);
 	return (ft_lstclear(&stack_a), ft_lstclear(&stack_b), 0);
 }

@@ -66,9 +66,14 @@ void	bring_min(t_list **a, t_list **b)
 
 void	sorting_five(t_list	**a, t_list	**b)
 {
-	bring_min(a, b);
+	int	size;
+
+	size = ft_lstsize(*a);
+	if (size == 5)
+		bring_min(a, b);
 	bring_min(a, b);
 	sorting_three(a);
-	pa(b, a);
+	if (size == 5)
+		pa(b, a);
 	pa(b, a);
 }

@@ -116,7 +116,7 @@ t_list	*insert_list(char *str, long nmb, size_t i, char **ptr)
 		return (free_split(ptr), ft_lstclear(&head), NULL);
 	while (ptr[i] != NULL)
 	{
-		nmb = ft_atoi(ptr[i]);
+		nmb = ft_atoi(ptr[i++]);
 		if (nmb > INT_MAX)
 			return (free_split(ptr), ft_lstclear(&head), NULL);
 		new_tmp = ft_lstnew(nmb);
